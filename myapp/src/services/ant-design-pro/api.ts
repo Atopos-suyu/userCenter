@@ -14,7 +14,7 @@ export async function currentUser(options?: { [key: string]: any }) {
 /** 退出登录接口 GET /api/user/logout */
 export async function outLogin(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/user/logout', {
-    method: 'GET',
+    method: 'POST',
     ...(options || {}),
   });
 }
@@ -22,7 +22,7 @@ export async function outLogin(options?: { [key: string]: any }) {
 /** 登录接口 GET /api/user/login */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
   return request<API.LoginResult>('/api/user/login', {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },

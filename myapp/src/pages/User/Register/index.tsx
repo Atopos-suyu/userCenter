@@ -62,7 +62,7 @@ const Register: React.FC = () => {
         ...values,
         type,
       });
-      if (id > 0) {
+      if (id) {
         const defaultLoginSuccessMessage = '注册成功！';
         message.success(defaultLoginSuccessMessage);
         if (!history) return;

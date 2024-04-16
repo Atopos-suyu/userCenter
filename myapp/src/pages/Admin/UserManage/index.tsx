@@ -3,13 +3,7 @@ import { ProTable, TableDropdown } from '@ant-design/pro-components';
 import { useRef } from 'react';
 import {API} from "@/services/ant-design-pro/typings";
 import {searchUsers} from "@/services/ant-design-pro/api";
-export const waitTimePromise = async (time: number = 100) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, time);
-  });
-};
+import { Avatar, Space, Tag } from 'antd';
 
 const columns: ProColumns<API.CurrentUser>[] = [
   {
@@ -28,13 +22,19 @@ const columns: ProColumns<API.CurrentUser>[] = [
     copyable: true,
   },
   {
+    disable: true,
     title: '头像',
-    dataIndex: 'avatarUrl',
-    render: (_, record) => (
-      <div>
-        <Image src={record.avatarUrl} width={100} />
-      </div>
-    ),
+    dataIndex: 'avatar',
+    search: false,
+    align: 'center',
+    renderFormItem: (_, { defaultRender }) => {
+      return defaultRender(_);
+    },
+    render: record => (
+      <Space>
+        <Avatar size={64} src={record?.toString()} />
+      </Space>
+    )
   },
   {
     title: '性别',
@@ -59,16 +59,21 @@ const columns: ProColumns<API.CurrentUser>[] = [
     dataIndex: 'planetCode',
   },
   {
+    dataIndex: 'role',
     title: '角色',
-    dataIndex: 'userRole',
-    valueType: 'select',
-    valueEnum: {
-      0: { text: '普通用户', status: 'Default' },
-      1: {
-        text: '管理员',
-        status: 'Success',
-      },
+    align: 'center',
+    renderFormItem: (_, { defaultRender }) => {
+      return defaultRender(_);
     },
+    render: record => (
+      <Space>
+        {record === 1 ? (
+          <Tag color="#f50">管理员</Tag>
+        ) : (
+          <Tag color="#2db7f5">普通用户</Tag>
+        )}{' '}
+      </Space>
+    )
   },
   {
     title: '创建时间',
@@ -87,9 +92,6 @@ const columns: ProColumns<API.CurrentUser>[] = [
         }}
       >
         编辑
-      </a>,
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
-        查看
       </a>,
       <TableDropdown
         key="actionGroup"

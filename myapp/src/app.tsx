@@ -1,12 +1,13 @@
 import {AvatarDropdown, AvatarName, Footer, Question} from '@/components';
-import {currentUser as queryCurrentUser} from '@/services/ant-design-pro/api';
+import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import {LinkOutlined} from '@ant-design/icons';
 import type {Settings as LayoutSettings} from '@ant-design/pro-components';
 import {SettingDrawer} from '@ant-design/pro-components';
 import type {RunTimeLayoutConfig} from '@umijs/max';
 import {history, Link} from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
-import {errorConfig} from './requestErrorConfig';
+// import {errorConfig} from './requestErrorConfig';
+import { RequestConfig } from '@@/plugin-request/request';
 import {API} from "@/services/ant-design-pro/typings";
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -15,6 +16,10 @@ const loginPath = '/user/login';
  * 无需用户登录态的页面
  */
 const NO_NEED_LOGIN_WHITE_LIST=['/user/register',loginPath];
+
+export const request: RequestConfig = {
+  timeout: 1000000,
+};
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -141,7 +146,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
  * @doc https://umijs.org/docs/max/request#配置
  */
-export const request = {
-  ...errorConfig,
-};
+// export const request = {
+//   ...errorConfig,
+// };
 
