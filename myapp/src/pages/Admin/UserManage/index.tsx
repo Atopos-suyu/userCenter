@@ -7,7 +7,7 @@ import {API} from "@/services/ant-design-pro/typings";
 import {searchUsers} from "@/services/ant-design-pro/api";
 import { Avatar, Space, Tag } from 'antd';
 
-export const waitTimePromise = async (time: number = 100) => {
+export const waitTimePromise  = async (time: number = 100) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);
