@@ -63,7 +63,7 @@ public class UserController {
      * @param request
      * @return
      */
-    @GetMapping("/login")
+    @PostMapping("/login")
     public BaseResponse<User> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request){
         if (userLoginRequest == null){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -87,7 +87,7 @@ public class UserController {
      * @param request
      * @return
      */
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public BaseResponse<Integer> userLogout(HttpServletRequest request){
         if (request == null){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -109,7 +109,7 @@ public class UserController {
         Object userObj = request.getSession().getAttribute(USER_LOGIN_STATUS);
         User currentUser = (User) userObj;
         if (currentUser == null){
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+            throw new BusinessException(ErrorCode.NOT_LOGIN);
         }
         Long userId = currentUser.getId();
         // TODO 校验用户是否合法
@@ -135,7 +135,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public BaseResponse<Boolean> deleteUser(@RequestBody int id,HttpServletRequest request){
 
         if(!isAdmin(request)){
