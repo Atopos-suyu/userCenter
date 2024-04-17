@@ -21,7 +21,7 @@ export const waitTime = async (time: number = 100) => {
 
   const columns: ProColumns<API.CurrentUser>[] = [
     {
-      dataIndex: 'id',
+      dataIndex: 'id',  
       valueType: 'indexBorder',
       width: 48,
     },

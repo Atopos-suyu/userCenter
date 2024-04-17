@@ -85,23 +85,27 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.LoginParams) => {
     try {
       // 登录
-      const user = await login({
+      const res = await login({
         ...values,
         type,
       });
-      if (user) {
+
+      if (res.code === 0 && res.data!==null) {
         const defaultLoginSuccessMessage = '登录成功！';
+        // @ts-ignore
+        //message.success(user_Account + user_Password);
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
         return;
-      }
-      setUserLoginState(user);
-    } catch (error) {
+      } else throw new Error(res.description);
+      // 如果失败去设置用户错误信息
+      //setUserLoginState(res.data);
+    } catch (error:any) {
       const defaultLoginFailureMessage = '登录失败，请重试！';
       console.log(error);
-      message.error(defaultLoginFailureMessage);
+      message.error(error.message ?? defaultLoginFailureMessage);
     }
   };
   const { status, type: loginType } = userLoginState;
@@ -194,7 +198,7 @@ const Login: React.FC = () => {
               <ProFormCheckbox noStyle name="autoLogin">
                 自动登录
               </ProFormCheckbox>
-              <Link to="/user/register">新用户注册</Link>
+              <Link to="/user/register">没有账户？新注册</Link>
               <a
                 style={{
                   float: 'right',

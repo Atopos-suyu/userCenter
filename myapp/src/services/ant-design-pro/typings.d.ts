@@ -45,15 +45,16 @@ declare namespace API {
     createdAt?: string;
     progress?: number;
   };
-  // /**
-  //  * 统一返回类型
-  //  */
-  // type BaseResponse<T> = {
-  //   code: number;
-  //   data: T;
-  //   message: string;
-  //   description:string;
-  // }
+
+  /**
+   * 统一返回类型
+   */
+  type BaseResponse<T> = {
+    code: number;
+    data: T;
+    message: string;
+    description:string;
+  }
 
   type RuleList = {
     data?: RuleListItem[];
