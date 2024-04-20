@@ -10,13 +10,11 @@ import com.yupi.usercenter.model.domain.request.UserLoginRequest;
 import com.yupi.usercenter.model.domain.request.UserRegisterRequest;
 import com.yupi.usercenter.service.UserService;
 import org.apache.commons.lang3.StringUtils;
-    import org.springframework.web.bind.annotation.*;
-
-    import javax.annotation.Resource;
+import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static com.yupi.usercenter.constant.UserConstant.ADMIN_ROLE;
 import static com.yupi.usercenter.constant.UserConstant.USER_LOGIN_STATUS;
 
@@ -35,6 +33,7 @@ public class UserController {
 
     /**
      * 用户注册
+     *
      *
      * @param userRegisterRequest
      * @return
