@@ -21,7 +21,7 @@ export const waitTime = async (time: number = 100) => {
 
   const columns: ProColumns<API.CurrentUser>[] = [
     {
-      dataIndex: 'id',  
+      dataIndex: 'id',
       valueType: 'indexBorder',
       width: 48,
     },
@@ -38,7 +38,7 @@ export const waitTime = async (time: number = 100) => {
     {
       disable: true,
       title: '头像',
-      dataIndex: 'avatar',
+      dataIndex: 'avatarUrl',
       search: false,
       align: 'center',
       renderFormItem: (_, {defaultRender}) => {
@@ -73,7 +73,7 @@ export const waitTime = async (time: number = 100) => {
       dataIndex: 'planetCode',
     },
     {
-      dataIndex: 'role',
+      dataIndex: 'userRole',
       title: '角色',
       align: 'center',
       renderFormItem: (_, {defaultRender}) => {

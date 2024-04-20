@@ -4,6 +4,7 @@
  */
 import {extend} from 'umi-request';
 import {message} from "antd";
+import * as process from "process";
 
 
 /**
@@ -11,6 +12,7 @@ import {message} from "antd";
  */
 const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
+  prefix:process.env.NODE_ENV === 'production' ? 'http://user-backend.code-nav.cn' : undefined
   // requestType: 'form',
 });
 

@@ -9,7 +9,7 @@ declare namespace API {
     username:string;
     userAccount:string;
     avatarUrl:string;
-    gender:number;
+    gender:string;
     phone:string;
     email:string;
     userState:number;
