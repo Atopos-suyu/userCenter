@@ -89,7 +89,7 @@ const Login: React.FC = () => {
         ...values,
         type,
       });
-
+      //todo 琢磨一下 if (res.code === 0 && res.data!==null) {  ===>  if (res.code === 0 && res!==null) {
       if (res.code === 0 && res.data!==null) {
         const defaultLoginSuccessMessage = '登录成功！';
         // @ts-ignore

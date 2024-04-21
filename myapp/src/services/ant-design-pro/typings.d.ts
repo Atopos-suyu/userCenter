@@ -54,6 +54,7 @@ declare namespace API {
     data: T;
     message: string;
     description:string;
+    username:string;
   }
 
   type RuleList = {

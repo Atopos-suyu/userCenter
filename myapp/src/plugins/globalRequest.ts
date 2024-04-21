@@ -38,7 +38,7 @@ request.interceptors.response.use(async (response, options): Promise<any> => {
   if(res.code !== 0){
     message.error(res.description)
   }
-
+  //todo 这个地方，将收到的请求直接返回，没有对其处理，所以在使用的时候，需要取data
   return res;
 });
 

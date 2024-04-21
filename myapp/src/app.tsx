@@ -6,7 +6,6 @@ import {SettingDrawer} from '@ant-design/pro-components';
 import type {RunTimeLayoutConfig} from '@umijs/max';
 import {history, Link} from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
-// import {errorConfig} from './requestErrorConfig';
 import { RequestConfig } from '@@/plugin-request/request';
 import {API} from "@/services/ant-design-pro/typings";
 
@@ -32,9 +31,11 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      return await queryCurrentUser({
+      //todo 琢磨一下 return await queryCurrentUser({  ===>  const res= await queryCurrentUser({
+      const res= await queryCurrentUser({
         skipErrorHandler: true,
       });
+      return res.data;
     } catch (error) {
       history.push(loginPath);
     }
@@ -63,14 +64,17 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
   return {
     actionsRender: () => [<Question key="doc" />],
     avatarProps: {
+      //src:'https://avatars.githubusercontent.com/u/143861703?s=400&u=41d93aae425d7ac5324b9a7616f1435ec0bb364d&v=4',
       src: initialState?.currentUser?.avatarUrl,
       title: <AvatarName />,
       render: (_, avatarChildren) => {
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
       },
     },
+    //水印
     waterMarkProps: {
       content: initialState?.currentUser?.username,
+      // content:'苏御',
     },
     footerRender: () => <Footer />,
     onPageChange: () => {
